@@ -1,0 +1,161 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index"/>
+        
+        <action name="index">
+            <result type="redirectAction">homepage</result>
+        </action>
+        
+        <!-- Account -->
+        <action name="register_page" class="com.abcjobs.communityportal.action.account.RegisterPageAction">
+        	<result name="success">jsp/register.jsp</result>
+        </action>
+        
+        <action name="register" class="com.abcjobs.communityportal.action.account.RegisterAction">
+        	<result name="success">jsp/thankyou.jsp</result>
+        	<result name="error">jsp/register.jsp</result>
+        </action>
+        
+        <action name="login_page" class="com.abcjobs.communityportal.action.account.LoginPageAction">
+        	<result name="success">jsp/login.jsp</result>
+        </action>
+        
+        <action name="login" class="com.abcjobs.communityportal.action.account.LoginAction">
+        	<result name="success">jsp/landingpage.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="logout" class="com.abcjobs.communityportal.action.account.LogoutAction">
+        	<result name="success">jsp/login.jsp</result>
+        </action>
+        
+        <action name="forgot_password_page" class="com.abcjobs.communityportal.action.account.ForgotPasswordPageAction">
+        	<result name="success">jsp/forgot_password.jsp</result>
+        </action>
+        
+        <action name="send_password_link" class="com.abcjobs.communityportal.action.account.SendPasswordLinkAction">
+        	<result name="success">jsp/forgot_password.jsp</result>
+        	<result name="error">jsp/forgot_password.jsp</result>
+        </action>
+        
+        <action name="check_password_token" class="com.abcjobs.communityportal.action.account.CheckPasswordTokenAction">
+        	<result name="success" type="redirectAction">new_password_page</result>
+        	<result name="error">jsp/forgot_password.jsp</result>
+        </action>
+        
+        <action name="new_password_page" class="com.abcjobs.communityportal.action.account.NewPasswordPageAction">
+        	<result name="success">jsp/new_password.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="new_password" class="com.abcjobs.communityportal.action.account.NewPasswordAction">
+        	<result name="success">jsp/login.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        <!-- End Account -->
+        
+        <!-- User -->
+        <action name="profile_page" class="com.abcjobs.communityportal.action.user.ProfilePageAction">
+        	<result name="success">jsp/profile.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="update_profile_page" class="com.abcjobs.communityportal.action.user.UpdateProfilePageAction">
+        	<result name="success">jsp/update_profile.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="update_profile" class="com.abcjobs.communityportal.action.user.UpdateProfileAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="add_skill" class="com.abcjobs.communityportal.action.user.AddSkillAction">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">update_profile_page</param>
+        		<param name="msgSkill">${msgSkill}</param>
+        	</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="delete_skill" class="com.abcjobs.communityportal.action.user.DeleteSkillAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="add_work_history" class="com.abcjobs.communityportal.action.user.AddWorkHistoryAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="delete_work_history" class="com.abcjobs.communityportal.action.user.DeleteWorkHistoryAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="add_education" class="com.abcjobs.communityportal.action.user.AddEducationAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="delete_education" class="com.abcjobs.communityportal.action.user.DeleteEducationAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="update_photo" class="com.abcjobs.communityportal.action.user.UpdatePhotoAction">
+        	<result name="success" type="redirectAction">update_profile_page</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="search_user_page" class="com.abcjobs.communityportal.action.user.SearchUserPageAction">
+        	<result name="success">jsp/search_user.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        
+        <action name="search_user" class="com.abcjobs.communityportal.action.user.SearchUserAction">
+        	<result name="success">jsp/search_user.jsp</result>
+        	<result name="login">jsp/login.jsp</result>
+        </action>
+        <!-- End User -->
+        
+        <!-- Admin -->
+        <action name="admin_page" class="com.abcjobs.communityportal.action.admin.AdminPageAction">
+        	<result name="success">jsp/admin.jsp</result>
+        	<result name="error" type="redirectAction">homepage</result>
+        </action>
+        
+        <action name="update_status" class="com.abcjobs.communityportal.action.admin.UpdateStatusAction">
+        	<result name="success" type="redirectAction">admin_page</result>
+        	<result name="error" type="redirectAction">homepage</result>
+        </action>
+        
+        <action name="bulk_email_page" class="com.abcjobs.communityportal.action.admin.BulkEmailPageAction">
+        	<result name="success">jsp/bulk_email.jsp</result>
+        	<result name="error" type="redirectAction">homepage</result>
+        </action>
+        
+        <action name="bulk_email" class="com.abcjobs.communityportal.action.admin.BulkEmailAction">
+        	<result name="success">jsp/bulk_email.jsp</result>
+        	<result name="error" type="redirectAction">homepage</result>
+        </action>
+        <!-- End Admin -->
+        
+        <!-- Common -->
+        <action name="homepage" class="com.abcjobs.communityportal.action.common.HomePageAction">
+        	<result name="success">jsp/landingpage.jsp</result>
+        	<result name="error">jsp/homepage.jsp</result>
+        </action>
+        <!-- End Common -->
+
+    </package>
+
+    <!-- Add addition packages and configuration here. -->
+</struts>
